@@ -11,12 +11,11 @@ var tryRequire = function (a, b) {
 };
 
 var fs = require('fs'),
-    mime = tryRequire('mime', 'node-mime/mime'),
-    jsp = require('uglify-js/lib/parse-js', 'UglifyJS/lib/parse-js'),
-    pro = require('uglify-js/lib/process', 'UglifyJS/lib/process'),
-    modules = require('kanso/modules'),
-    logger = require('kanso/logger'),
-    utils = require('kanso/utils');
+    mime = require('mime'),
+    jsp = require('uglify-js/lib/parse-js'),
+    pro = require('uglify-js/lib/process'),
+    modules = require('kanso-utils/modules'),
+    utils = require('kanso-utils/utils');
 
 
 function minify(src) {
@@ -57,7 +56,7 @@ module.exports = function (root, path, settings, doc, callback) {
         var data = content.toString() + (wrapped_modules || '');
 
         if (settings.minify) {
-            logger.info('compressing', 'modules.js');
+            console.log('Compressing modules.js');
             data = minify(data);
         }
 
